@@ -8,6 +8,7 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] KeyCode jump = KeyCode.None;
     [SerializeField] float force = 0.0f;
+    [SerializeField] bool canJump = true;
 
     Rigidbody rb = null;
 
@@ -19,9 +20,14 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(jump))
+        if (canJump && Input.GetKeyDown(jump))
         {
             rb.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
     }
 }
